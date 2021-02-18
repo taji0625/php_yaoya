@@ -1,14 +1,11 @@
 <?php
+require_once  "./product.php";
+require_once  "./user.php";
+require_once  "./greengrocer.php";
 
-// 商品を表示する
-function dispProducts($products)
-{
-  echo "いらっしゃいませ！商品を選んで下さい。\n\n";
-  foreach($products as $i => $product) {
-    $i++;
-    echo "${i}. ${product['name']}(${product['price']}円)\n";
-  }
-}
+
+
+
 
 // 商品を選択
 function chooseProduct($products)
@@ -55,12 +52,19 @@ function calculateCharges($chosenProduct, $quantityOfProduct)
   echo "お買い上げありがとうございました！\n";
 }
 
-$products = [
+$productParams = [
   ['name' => 'トマト' , 'price' => 100],
   ['name' => 'きゅうり' , 'price' => 200],
   ['name' => '玉ねぎ' , 'price' => 300],
   ['name' => 'なす' , 'price' => 400],
 ];
+
+$products = [];
+foreach ($productParams as $param) {
+  array_push($products, new Product($param));
+}
+
+$greengrocer = new Greengrocer($products);
 
 dispProducts($products);
 $chosenProduct = chooseProduct($products);
