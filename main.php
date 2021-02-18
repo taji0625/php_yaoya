@@ -14,18 +14,31 @@ foreach($products as $i => $product) {
 }
 
 echo "\n";
-echo "商品の番号を選択 > ";
+while(true) {
+  echo "商品の番号を選択 > ";
+  $selectProductNum = trim(fgets(STDIN));
+  if ($selectProductNum == 1 || $selectProductNum == 2 || $selectProductNum == 3 || $selectProductNum == 4) {
+    break;
+  }
+  echo "\n1~4の番号を入力して下さい！\n\n";
+}
 echo "\n";
-$selectProductNum = trim(fgets(STDIN));
 $chosen_product = $products[$selectProductNum - 1];
 
 echo "${chosen_product['name']}ですね。何個買いますか？\n\n";
-echo "個数を入力 > \n";
-$quantity = trim(fgets(STDIN));
+
+while (true) {
+  echo "個数を入力 > ";
+  $quantity = trim(fgets(STDIN));
+  if (is_numeric($quantity)) {
+    break;
+  }
+  echo "\n個数を入力して下さい！\n\n"; 
+}
 $totalAmount = $chosen_product['price'] * $quantity;
 
 if($quantity >= 5) {
-  echo "５個以上なので10%割引となります。\n";
+  echo "\n５個以上なので10%割引となります。\n";
   $totalAmount *= 0.9;
 } 
 echo "合計金額は${totalAmount}円です。\n";
