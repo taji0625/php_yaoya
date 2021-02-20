@@ -2,8 +2,8 @@
 
 class Product
 {
-  private $name;
-  private $price;
+  public $name;
+  public $price;
 
   public function __construct($name, $price)
   {

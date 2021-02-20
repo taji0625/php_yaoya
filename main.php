@@ -61,12 +61,9 @@ $productParams = [
 
 $products = [];
 foreach ($productParams as $param) {
-  array_push($products, new Product($param));
+  array_push($products, new Product($param["name"], $param["price"]));
 }
 
 $greengrocer = new Greengrocer($products);
 
-dispProducts($products);
-$chosenProduct = chooseProduct($products);
-$quantityOfProduct = decideQuantity($chosenProduct);
-calculateCharges($chosenProduct, $quantityOfProduct );
+$greengrocer->dispProducts();
